@@ -125,6 +125,14 @@ resource "aws_instance" "vm" {
     ]
   }
 
+  instance_market_options {
+    market_type = "spot"
+
+    spot_options {
+      instance_interruption_behavior = "stop"
+      spot_instance_type = "persistent"
+    }
+  }
 }
 
 # Resource to allocate an Elastic IP address for the VM
