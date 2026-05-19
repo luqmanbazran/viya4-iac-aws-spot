@@ -313,6 +313,7 @@ variable "node_pools" {
     metadata_http_endpoint               = string
     metadata_http_tokens                 = string
     metadata_http_put_response_hop_limit = number
+    capacity_type                        = string
   }))
 
   default = {
@@ -332,6 +333,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     compute = {
       "vm_type"      = "m6idn.xlarge"
@@ -350,6 +352,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     stateless = {
       "vm_type"      = "m6in.xlarge"
@@ -367,6 +370,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     stateful = {
       "vm_type"      = "m6in.xlarge"
@@ -384,6 +388,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     }
   }
 }

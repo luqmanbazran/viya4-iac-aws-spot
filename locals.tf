@@ -155,6 +155,9 @@ locals {
       # Node Pool IAM Configuration
       iam_role_use_name_prefix = false
       iam_role_name            = "${var.prefix}-default-eks-node-group"
+
+      # Instance Type configuration
+      capacity_type = "SPOT"
     }
   }
 
@@ -226,6 +229,8 @@ locals {
       # Node Pool IAM Configuration
       iam_role_use_name_prefix = false
       iam_role_name            = "${var.prefix}-${key}-eks-node-group"
+      # Instance Type configuration
+      capacity_type = np_value.capacity_type
     }
   }
 
