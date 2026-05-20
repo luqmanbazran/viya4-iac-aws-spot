@@ -295,6 +295,12 @@ variable "default_nodepool_metadata_http_put_response_hop_limit" {
   default     = 1
 }
 
+variable "default_nodepool_lifecyle" {
+  description = "The lifecycle configuration for the default node pool. Valid choices are ON_DEMAND and SPOT."
+  type        = string
+  default     = "SPOT"
+}
+
 ## Dynamic node pool config
 # Node Pool Definitions.
 variable "node_pools" {
