@@ -530,6 +530,12 @@ variable "jump_rwx_filestore_path" {
   default     = "/viya-share"
 }
 
+variable "jump_spot_enabled" {
+  description = "Enable spot lifecycle for the jump VM."
+  type        = bool
+  default     = false
+}
+
 # Size in GB for each disk of the RAID0 cluster, when storage_type=standard.
 variable "nfs_raid_disk_size" {
   description = "Size in GB for each disk of the RAID0 cluster, when storage_type=standard."
@@ -570,6 +576,12 @@ variable "nfs_vm_type" {
   description = "NFS VM type."
   type        = string
   default     = "m6in.xlarge"
+}
+
+variable "nfs_spot_enabled" {
+  description = "Enable spot lifecycle for the spot VM."
+  type        = bool
+  default     = false
 }
 
 # Disk size for default node pool VMs in GB.

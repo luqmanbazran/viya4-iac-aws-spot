@@ -138,3 +138,9 @@ variable "enable_nist_features" {
   type        = bool
   default     = false
 }
+
+variable "spot_enabled" {
+  description = "Enable spot lifecycle for this instance."
+  type        = bool
+  default     = false
+}

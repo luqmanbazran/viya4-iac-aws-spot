@@ -134,6 +134,7 @@ module "jump" {
 
   depends_on = [module.nfs]
 
+  spot_enabled = var.jump_spot_enabled
 }
 
 # Defining the cloud-config to use
@@ -152,6 +153,8 @@ data "cloudinit_config" "nfs" {
       }
     )
   }
+
+   spot_enabled = var.nfs_spot_enabled
 }
 
 # NFS Server VM

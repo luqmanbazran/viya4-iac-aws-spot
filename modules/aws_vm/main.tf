@@ -125,12 +125,15 @@ resource "aws_instance" "vm" {
     ]
   }
 
-  instance_market_options {
-    market_type = "spot"
+  dynamic "instance_market_options" {
+    for_each = var.spot_enabled ? [1] : []
+    content {
+      market_type = "spot"
 
-    spot_options {
-      instance_interruption_behavior = "stop"
-      spot_instance_type = "persistent"
+      spot_options {
+        instance_interruption_behavior = "stop"
+        spot_instance_type             = "persistent"
+      }
     }
   }
 }
