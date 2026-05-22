@@ -153,8 +153,6 @@ data "cloudinit_config" "nfs" {
       }
     )
   }
-
-   spot_enabled = var.nfs_spot_enabled
 }
 
 # NFS Server VM
@@ -184,4 +182,6 @@ module "nfs" {
   enable_ebs_encryption = var.enable_ebs_encryption
 
   cloud_init = data.cloudinit_config.nfs[0].rendered
+
+  spot_enabled = var.nfs_spot_enabled
 }
