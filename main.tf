@@ -30,12 +30,12 @@ data "aws_caller_identity" "terraform" {}
 
 # Data source to get the current git commit hash for build info. Uses an external script.
 data "external" "git_hash" {
-  program = ["files/tools/iac_git_info.sh"]
+  program = ["${path.module}/files/tools/iac_git_info.sh"]
 }
 
 # Data source to get the current IAC tooling version and provider info. Uses an external script.
 data "external" "iac_tooling_version" {
-  program = ["files/tools/iac_tooling_version.sh"]
+  program = ["${path.module}/files/tools/iac_tooling_version.sh"]
 }
 
 # Resource to create a Kubernetes ConfigMap in the kube-system namespace with build info (git hash, timestamp, tooling version, etc).
