@@ -581,7 +581,7 @@ variable "nfs_vm_type" {
 variable "nfs_spot_enabled" {
   description = "Enable spot lifecycle for the nfs VM."
   type        = bool
-  default     = enabled
+  default     = true
 }
 
 # Disk size for default node pool VMs in GB.
