@@ -295,7 +295,7 @@ variable "default_nodepool_metadata_http_put_response_hop_limit" {
   default     = 1
 }
 
-variable "default_nodepool_lifecyle" {
+variable "default_nodepool_lifecycle" {
   description = "The lifecycle configuration for the default node pool. Valid choices are ON_DEMAND and SPOT."
   type        = string
   default     = "SPOT"
@@ -579,7 +579,7 @@ variable "nfs_vm_type" {
 }
 
 variable "nfs_spot_enabled" {
-  description = "Enable spot lifecycle for the spot VM."
+  description = "Enable spot lifecycle for the nfs VM."
   type        = bool
   default     = false
 }
