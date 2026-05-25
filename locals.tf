@@ -157,7 +157,7 @@ locals {
       iam_role_name            = "${var.prefix}-default-eks-node-group"
 
       # Instance Type configuration
-      capacity_type = var.default_nodepool_lifecyle
+      capacity_type = var.default_nodepool_lifecycle
     }
   }
 
