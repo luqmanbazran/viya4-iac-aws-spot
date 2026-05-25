@@ -533,7 +533,7 @@ variable "jump_rwx_filestore_path" {
 variable "jump_spot_enabled" {
   description = "Enable spot lifecycle for the jump VM."
   type        = bool
-  default     = false
+  default     = true
 }
 
 # Size in GB for each disk of the RAID0 cluster, when storage_type=standard.
@@ -581,7 +581,7 @@ variable "nfs_vm_type" {
 variable "nfs_spot_enabled" {
   description = "Enable spot lifecycle for the nfs VM."
   type        = bool
-  default     = false
+  default     = enabled
 }
 
 # Disk size for default node pool VMs in GB.
