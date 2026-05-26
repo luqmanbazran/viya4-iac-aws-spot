@@ -295,6 +295,12 @@ variable "default_nodepool_metadata_http_put_response_hop_limit" {
   default     = 1
 }
 
+variable "default_nodepool_lifecycle" {
+  description = "The lifecycle configuration for the default node pool. Valid choices are ON_DEMAND and SPOT."
+  type        = string
+  default     = "SPOT"
+}
+
 ## Dynamic node pool config
 # Node Pool Definitions.
 variable "node_pools" {
@@ -313,6 +319,7 @@ variable "node_pools" {
     metadata_http_endpoint               = string
     metadata_http_tokens                 = string
     metadata_http_put_response_hop_limit = number
+    capacity_type                        = string
   }))
 
   default = {
@@ -332,6 +339,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     compute = {
       "vm_type"      = "m6idn.xlarge"
@@ -350,6 +358,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     stateless = {
       "vm_type"      = "m6in.xlarge"
@@ -367,6 +376,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     },
     stateful = {
       "vm_type"      = "m6in.xlarge"
@@ -384,6 +394,7 @@ variable "node_pools" {
       "metadata_http_endpoint"               = "enabled"
       "metadata_http_tokens"                 = "required"
       "metadata_http_put_response_hop_limit" = 1
+      "capacity_type"                        = "SPOT"
     }
   }
 }
@@ -519,6 +530,12 @@ variable "jump_rwx_filestore_path" {
   default     = "/viya-share"
 }
 
+variable "jump_spot_enabled" {
+  description = "Enable spot lifecycle for the jump VM."
+  type        = bool
+  default     = true
+}
+
 # Size in GB for each disk of the RAID0 cluster, when storage_type=standard.
 variable "nfs_raid_disk_size" {
   description = "Size in GB for each disk of the RAID0 cluster, when storage_type=standard."
@@ -559,6 +576,12 @@ variable "nfs_vm_type" {
   description = "NFS VM type."
   type        = string
   default     = "m6in.xlarge"
+}
+
+variable "nfs_spot_enabled" {
+  description = "Enable spot lifecycle for the nfs VM."
+  type        = bool
+  default     = true
 }
 
 # Disk size for default node pool VMs in GB.

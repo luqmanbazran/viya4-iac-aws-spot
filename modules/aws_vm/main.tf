@@ -74,6 +74,12 @@ resource "aws_key_pair" "admin" {
   public_key = var.ssh_public_key
 }
 
+# Resource used to trigger a replacement when the spot lifceycle is toggled
+# This is needed because changing from on-demand to spot is not possible due to the following bug https://github.com/hashicorp/terraform-provider-aws/issues/38141
+resource "terraform_data" "spot_trigger" {
+  input = var.spot_enabled
+}
+
 # Resource to provision an EC2 instance (VM) in AWS
 resource "aws_instance" "vm" {
   # The AMI ID to use for the instance, fetched from the aws_ami data source
@@ -123,8 +129,20 @@ resource "aws_instance" "vm" {
       # updates these based on some ruleset managed elsewhere.
       ami,
     ]
+    replace_triggered_by = [terraform_data.spot_trigger]
   }
 
+  dynamic "instance_market_options" {
+    for_each = var.spot_enabled ? [1] : []
+    content {
+      market_type = "spot"
+
+      spot_options {
+        instance_interruption_behavior = "stop"
+        spot_instance_type             = "persistent"
+      }
+    }
+  }
 }
 
 # Resource to allocate an Elastic IP address for the VM
